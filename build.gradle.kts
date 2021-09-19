@@ -4,9 +4,6 @@ val kotlinx_html_version: String = "0.7.2"
 
 val currentVersion = versioning.info.base.let { if (it.isEmpty()) "dev" else it }
 
-val grpUser: String by project
-val grpToken: String by project
-
 group = "com.centyllion"
 version = currentVersion
 
@@ -96,21 +93,5 @@ fun PublicationContainer.createPublication(name: String) {
                 }
             }
         }
-    }
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/centyllion/babylon-kotlin")
-            credentials {
-                username = grpUser
-                password = grpToken
-            }
-        }
-    }
-    publications {
-        components.forEach { createPublication(it.name) }
     }
 }
